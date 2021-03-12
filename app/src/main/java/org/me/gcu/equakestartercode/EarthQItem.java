@@ -1,8 +1,15 @@
 package org.me.gcu.equakestartercode;
 
+import java.io.Serializable;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
 
-public class EarthQItem {
+public class EarthQItem implements Serializable {
 
     public String getTitle() {
         return title;
@@ -20,27 +27,31 @@ public class EarthQItem {
         this.description = description;
     }
 
-    public String getDate() {
-        return date;
+    public Date getDate() {return date;}
+
+    public String getStringDate(){
+        DateFormat dateFormat = new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss");
+        String strDate = dateFormat.format(date);
+        return strDate;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
-    public String getLatitude() {
+    public double getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(String latitude) {
+    public void setLatitude(double latitude) {
         this.latitude = latitude;
     }
 
-    public String getLongitude() {
+    public double getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(String longitude) {
+    public void setLongitude(double longitude) {
         this.longitude = longitude;
     }
     public String getLocation() {
@@ -51,49 +62,64 @@ public class EarthQItem {
         this.location = location;
     }
 
-    public String getMagnitude() {
-        return magnitude;
+    public double getMagnitude() {
+        List<String> split = new ArrayList<String>(Arrays.asList(description.split(";")));
+        try {
+            return Double.parseDouble(split.get(4).substring(split.get(4).length() - 3));
+        } catch (Exception e) {
+            return 0;
+        }
     }
 
-    public void setMagnitude(String magnitude) {
-        this.magnitude = magnitude;
+    public double getDepth() {
+        List<String> split = new ArrayList<String>(Arrays.asList(description.split(";")));
+        try {
+            return Double.parseDouble(split.get(3).substring(8, split.get(3).length() - 4));
+        } catch (Exception e) {
+            return 0;
+        }
     }
-
     @Override
     public String toString() {
-        return location + magnitude;
+        return location;
     }
 
-    public EarthQItem(String title, String description, String date, String latitude,
-                      String longitude, String location, String magnitude) {
+    public EarthQItem(String title, String description, Date date, double latitude,
+                      double longitude, String location) {
         this.title = title;
         this.description = description;
         this.date = date;
         this.latitude = latitude;
         this.longitude = longitude;
         this.location = location;
-        this.magnitude = magnitude;
+
+    }
+
+    public EarthQItem(String location,  Date date) {
+        this.date = date;
+        this.location = location;
+
     }
 
 
     public EarthQItem(){
         title ="";
         description = "";
-        date = "";
-        latitude = "";
-        longitude = "";
+        date = null;
+        latitude = 0.00;
+        longitude = 0.00;
         location = "";
-        magnitude = "";
+
 
     }
 
     private String title;
     private String description;
-    private String date;
-    private String latitude;
-    private String longitude;
-    private String location;
-    private String magnitude;
+    private Date date;
+    private double latitude;
+    private double  longitude;
+    private String  location;
+
 
 
 }
