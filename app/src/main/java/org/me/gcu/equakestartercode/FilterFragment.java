@@ -47,12 +47,6 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
     private ArrayList<EarthQItem> filteredList;
     private ListView listView;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-
-    }
 
     @Nullable
     @Override

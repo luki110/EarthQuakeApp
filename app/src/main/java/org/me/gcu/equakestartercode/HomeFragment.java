@@ -48,12 +48,6 @@ public class HomeFragment extends Fragment  {
     private String urlSource="http://quakes.bgs.ac.uk/feeds/MhSeismology.xml";
 
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        setRetainInstance(true);
-    }
 
     @Nullable
     @Override

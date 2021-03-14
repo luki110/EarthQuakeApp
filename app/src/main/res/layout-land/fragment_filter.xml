@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     >
 
-
     <TextView
         android:id="@+id/tvSelectedDate"
         android:layout_width="match_parent"
@@ -16,18 +15,37 @@
         android:textAlignment="center" />
 
 
-    <Button
-        android:id="@+id/btnDatePicker"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select date" />
+        android:weightSum="100"
+        >
+        <Button
+            android:id="@+id/btnDatePicker"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:text="Select date"
+            android:gravity="center"
+            android:layout_weight="45"
+            android:layout_marginEnd="2dp"
+            android:layout_marginStart="2dp"/>
 
 
-    <Button
-        android:id="@+id/btnFilter"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Search" />
+        <Button
+            android:id="@+id/btnFilter"
+            android:layout_width="240dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="Search"
+            android:layout_weight="45"
+            android:layout_marginStart="2dp"/>
+
+    </LinearLayout>
+
+
+
+
+
 
     <TextView
         android:id="@+id/tvNoOfRecords"
