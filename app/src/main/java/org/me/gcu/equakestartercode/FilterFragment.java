@@ -2,11 +2,13 @@ package org.me.gcu.equakestartercode;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,18 +30,22 @@ import com.google.android.material.datepicker.MaterialPickerOnPositiveButtonClic
 import java.util.ArrayList;;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 
 public class FilterFragment extends Fragment implements View.OnClickListener{
 
+    private static final String TAG = "HashMapAdapter";
 //    private EditText datePicker1, datePicker2;
     private Button btnFilter, datePicker;
     private SharedViewModel viewModel;
     private ArrayList<EarthQItem> list;
-    //private HashMap filteredList;
+    private LinkedHashMap<String, EarthQItem> filteredHashMap;
     private Date startDate, endDate;
     private TextView selectedDate;
     private ArrayList<EarthQItem> filteredList;
+    private ListView listView;
 
 
     @Nullable
@@ -50,6 +56,7 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
         datePicker = v.findViewById(R.id.btnDatePicker);
 //        datePicker2 = v.findViewById(R.id.datePicker2);
         btnFilter = v.findViewById(R.id.btnFilter);
+        listView = v.findViewById(R.id.filteredListView);
         selectedDate = v.findViewById(R.id.tvSelectedDate);
         btnFilter.setOnClickListener(this);
         datePicker.setOnClickListener(this);
@@ -113,6 +120,9 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
         {
             if(sDate.toString().equals(eDate.toString()))
             {
+                Log.d(TAG, "filterList: " + i.getStringDate() + " "+ sDate);
+//                Calendar calendar = Calendar.getInstance();
+//                calendar.
                 if(i.getDate() == sDate){
                     filteredList.add(i);
                 }
@@ -126,7 +136,7 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
 
         }
         if(filteredList.size() ==0){
-            Toast.makeText(getContext(), "There was no earthquakes on this day/dates", Toast.LENGTH_LONG);
+            Toast.makeText(getContext(), "There was no earthquakes on this day/dates", Toast.LENGTH_LONG).show();
             return null;
         }
         else{
@@ -154,10 +164,30 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btnFilter:
-                filterList(list, startDate, endDate);
-                break;
+                try {
+                    filterResults();
+                }catch (Exception e){
+                    Toast.makeText(getActivity(), "There was no earthquakes on this day/dates", Toast.LENGTH_LONG).show();
+                    listView.setVisibility(View.INVISIBLE);
+                }
 
+                break;
         }
+    }
+    public void filterResults (){
+        filterList(list, startDate, endDate);
+        filteredHashMap = new LinkedHashMap<String, EarthQItem>();
+        filteredHashMap.put("Shallowest", getShallowestEarthQuake(filteredList));
+        filteredHashMap.put("Deepest", getDeepestEarthQuake(filteredList));
+        filteredHashMap.put("Largest Magnitude", getLargestMagnituteEarthQuake(filteredList));
+        filteredHashMap.put("Most Northerly", getMostNortherlyEarthQuake(filteredList));
+        filteredHashMap.put("Most Southerly", getMostSoutherlyEarthQuake(filteredList));
+        filteredHashMap.put("Most Easterly", getMostEasterlyEarthQuake(filteredList));
+        filteredHashMap.put("Most Westerly", getMostWesterlyEarthQuake(filteredList));
+        HashMapAdapter adapter = new HashMapAdapter(getActivity(), R.layout.filter_adapter_layout,
+                filteredHashMap);
+        listView.setAdapter(adapter);
+        listView.setVisibility(View.VISIBLE);
     }
 
     public EarthQItem getDeepestEarthQuake(ArrayList<EarthQItem> unfilteredList){

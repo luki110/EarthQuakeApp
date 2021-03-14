@@ -30,7 +30,7 @@ public class EarthQItem implements Serializable {
     public Date getDate() {return date;}
 
     public String getStringDate(){
-        DateFormat dateFormat = new SimpleDateFormat("E, MMM dd yyyy HH:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("E, MMM dd yyyy");
         String strDate = dateFormat.format(date);
         return strDate;
     }

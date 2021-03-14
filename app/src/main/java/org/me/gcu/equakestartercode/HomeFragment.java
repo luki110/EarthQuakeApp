@@ -124,7 +124,7 @@ public class HomeFragment extends Fragment  {
                             else if("pubdate".equalsIgnoreCase(eltName))
                             {
                                 String sDate = xpp.nextText();
-                                SimpleDateFormat formatter = new SimpleDateFormat("E, dd MMM yyyy HH:mm:ss");
+                                SimpleDateFormat formatter = new SimpleDateFormat("E, dd MMM yyyy");
                                 Date date = formatter.parse(sDate);
                                 currentItem.setDate(date);
                             }
