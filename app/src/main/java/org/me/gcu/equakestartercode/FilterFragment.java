@@ -43,10 +43,16 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
     private ArrayList<EarthQItem> list;
     private LinkedHashMap<String, EarthQItem> filteredHashMap;
     private Date startDate, endDate;
-    private TextView selectedDate;
+    private TextView selectedDate, zeroResults, numberOfResults;
     private ArrayList<EarthQItem> filteredList;
     private ListView listView;
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+
+    }
 
     @Nullable
     @Override
@@ -56,13 +62,16 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
         datePicker = v.findViewById(R.id.btnDatePicker);
 //        datePicker2 = v.findViewById(R.id.datePicker2);
         btnFilter = v.findViewById(R.id.btnFilter);
+        zeroResults = v.findViewById(R.id.tvNoResults);
+        numberOfResults =  v.findViewById(R.id.tvNoOfRecords);
         listView = v.findViewById(R.id.filteredListView);
         selectedDate = v.findViewById(R.id.tvSelectedDate);
         btnFilter.setOnClickListener(this);
         datePicker.setOnClickListener(this);
 
-        showRangeCalendar();
 
+        showRangeCalendar();
+        setRetainInstance(true);
 
         return v;
     }
@@ -70,7 +79,7 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
     private void showRangeCalendar(){
         MaterialDatePicker.Builder<Pair<Long, Long>> builderRange = MaterialDatePicker.Builder.dateRangePicker();
         CalendarConstraints.Builder constraintsBuilderRange = new CalendarConstraints.Builder();
-
+        builderRange.setTitleText("Select range or one day for start and end");
         Calendar min = Calendar.getInstance();
         min.add(Calendar.DATE, -100);
         Calendar max = Calendar.getInstance();
@@ -120,16 +129,17 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
         {
             if(sDate.toString().equals(eDate.toString()))
             {
-                Log.d(TAG, "filterList: " + i.getStringDate() + " "+ sDate);
+                Log.d(TAG, "filterList: " + i.getDate() + " "+ sDate.toString());
 //                Calendar calendar = Calendar.getInstance();
 //                calendar.
-                if(i.getDate() == sDate){
+                if(i.getDate().equals(sDate)){
                     filteredList.add(i);
                 }
 
             }
             else{
-                if(i.getDate().after(sDate) && i.getDate().before(eDate)){
+                if(i.getDate().after(sDate) && i.getDate().before(eDate) ||
+                        i.getDate().equals(sDate) || i.getDate().equals(eDate) ){
                     filteredList.add(i);
                 }
             }
@@ -166,9 +176,17 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
             case R.id.btnFilter:
                 try {
                     filterResults();
+                    zeroResults.setVisibility(View.GONE);
+                    numberOfResults.setVisibility(View.VISIBLE);
+                    String text = filteredList.size() > 1 ? " earthquakes found" : " earthquake found";
+                    numberOfResults.setText(filteredList.size() + text);
                 }catch (Exception e){
                     Toast.makeText(getActivity(), "There was no earthquakes on this day/dates", Toast.LENGTH_LONG).show();
                     listView.setVisibility(View.INVISIBLE);
+                    zeroResults.setText("0 results found");
+                    zeroResults.setVisibility(View.VISIBLE);
+                    numberOfResults.setText("");
+                    numberOfResults.setVisibility(View.GONE);
                 }
 
                 break;

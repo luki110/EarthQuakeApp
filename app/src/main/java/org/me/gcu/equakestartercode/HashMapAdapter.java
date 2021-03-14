@@ -91,9 +91,9 @@ public class HashMapAdapter extends BaseAdapter {
         lastPosition = position;
 
         holder.location.setText(location);
-        holder.date.setText(sDate);
+        holder.date.setText("Date: " + sDate);
         holder.key.setText(key);
-        holder.latlong.setText(String.valueOf(latitude) + " " + String.valueOf(longitude));
+        holder.latlong.setText(String.valueOf(latitude) + ", " + String.valueOf(longitude));
         holder.depth.setText("Depth: " + String.valueOf(depth) + "km");
 
         holder.magnitude.setText("Magnitude: " + String.valueOf(magnitude));

@@ -40,7 +40,7 @@ public class MapInfoWindowAdapter  implements GoogleMap.InfoWindowAdapter{
         title.setText(earthQItem.getLocation());
         title.setTextColor(Color.BLACK);
         magnitude.setText("Magnitude: " + earthQItem.getMagnitude());
-        date.setText("Date: " + earthQItem.getDate());
+        date.setText("Date: " + earthQItem.getStringDate());
         date.setTextColor(Color.BLACK);
         latlong.setText(earthQItem.getLatitude() + ", " + earthQItem.getLongitude());
         latlong.setTextColor(Color.BLACK);

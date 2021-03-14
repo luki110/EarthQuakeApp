@@ -11,8 +11,10 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:gravity="center"
+        android:textSize="20sp"
         android:text="Please select date"
         android:textAlignment="center" />
+
 
     <Button
         android:id="@+id/btnDatePicker"
@@ -20,22 +22,31 @@
         android:layout_height="wrap_content"
         android:text="Select date" />
 
-<!--    <EditText-->
-<!--        android:id="@+id/datePicker2"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:clickable="false"-->
-<!--        android:cursorVisible="false"-->
-<!--        android:focusable="false"-->
-<!--        android:focusableInTouchMode="false"-->
-<!--        android:hint="Select End Date"-->
-<!--        android:inputType="date" />-->
+
 
     <Button
         android:id="@+id/btnFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Search" />
+
+    <TextView
+        android:id="@+id/tvNoOfRecords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text=""
+        android:textAlignment="center"
+        android:visibility="invisible"/>
+
+    <TextView
+        android:id="@+id/tvNoResults"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center"
+        android:text=""
+        android:textAlignment="center"
+        android:visibility="invisible"/>
 
     <ListView
         android:id="@+id/filteredListView"
