@@ -23,12 +23,13 @@
             android:text="@string/contains_british"
             />
 
-        <ListView
-            android:id="@+id/itemList"
+        <GridView
+            android:id="@+id/gridList"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:verticalSpacing="1dp"
+            android:numColumns="2"
             />
-
 
 
     </LinearLayout>

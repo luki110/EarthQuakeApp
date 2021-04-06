@@ -2,6 +2,7 @@ package org.me.gcu.equakestartercode;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -42,11 +44,10 @@ public class HomeFragment extends Fragment  {
 
     private SharedViewModel viewModel;
     private ListView itemList;
-    private Button startButton;
+    private GridView gridList;
     private String result = "";
     private String url1="";
     private String urlSource="http://quakes.bgs.ac.uk/feeds/MhSeismology.xml";
-
 
 
     @Nullable
@@ -55,7 +56,7 @@ public class HomeFragment extends Fragment  {
         View v = inflater.inflate(R.layout.fragment_home, container, false);
 
         itemList = v.findViewById(R.id.itemList);
-
+        gridList = v.findViewById(R.id.gridList);
         return v;
     }
 
@@ -136,10 +137,18 @@ public class HomeFragment extends Fragment  {
 
                 eventType = xpp.next();
             }
+            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT){
+                EarthQAdapter adapter = new EarthQAdapter(getActivity(), R.layout.adapter_layout, alist);
 
-            EarthQAdapter adapter = new EarthQAdapter(getActivity(), R.layout.adapter_layout, alist);
+                itemList.setAdapter(adapter);
+            }
 
-            itemList.setAdapter(adapter);
+            if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
+                GridViewAdapter grid_adapter = new GridViewAdapter(getActivity(), R.layout.adapter_layout, alist);
+
+                gridList.setAdapter(grid_adapter);
+            }
+
             viewModel.setList(alist);
         }
         catch (XmlPullParserException | IOException | ParseException ae1)

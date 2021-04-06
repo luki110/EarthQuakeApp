@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,8 +46,8 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
     private Date startDate, endDate;
     private TextView selectedDate, zeroResults, numberOfResults;
     private ArrayList<EarthQItem> filteredList;
-    private ListView listView;
-
+//    private ListView listView;
+    private GridView listView;
 
     @Nullable
     @Override
@@ -75,7 +76,7 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
         CalendarConstraints.Builder constraintsBuilderRange = new CalendarConstraints.Builder();
         builderRange.setTitleText("Select range or one day for start and end");
         Calendar min = Calendar.getInstance();
-        min.add(Calendar.DATE, -100);
+        min.add(Calendar.DATE, -51);
         Calendar max = Calendar.getInstance();
         max.set(Calendar.HOUR_OF_DAY, 0);
 
@@ -121,7 +122,7 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
 
         for (EarthQItem i: unfilteredList)
         {
-            if(sDate.toString().equals(eDate.toString()))
+            if(sDate.equals(eDate))
             {
                 Log.d(TAG, "filterList: " + i.getDate() + " "+ sDate.toString());
 //                Calendar calendar = Calendar.getInstance();
@@ -137,7 +138,6 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
                     filteredList.add(i);
                 }
             }
-
         }
         if(filteredList.size() ==0){
             Toast.makeText(getContext(), "There was no earthquakes on this day/dates", Toast.LENGTH_LONG).show();
@@ -160,7 +160,6 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
                 list = earthQItems;
             }
         });
-
     }
 
 
@@ -186,6 +185,7 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
                 break;
         }
     }
+
     public void filterResults (){
         filterList(list, startDate, endDate);
         filteredHashMap = new LinkedHashMap<String, EarthQItem>();

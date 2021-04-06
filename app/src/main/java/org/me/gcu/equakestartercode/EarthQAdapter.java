@@ -82,7 +82,7 @@ public class EarthQAdapter  extends ArrayAdapter<EarthQItem> {
         holder.location.setText(location);
         holder.date.setText(sDate);
 
-        holder.magnitude.setText("Magnitude: " + String.valueOf(magnitude));
+        holder.magnitude.setText(String.format("Magnitude: %s", String.valueOf(magnitude)));
 
         if(getItem(position).getMagnitude() > 3)
         {

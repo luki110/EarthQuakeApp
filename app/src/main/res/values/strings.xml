@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">EQuakeStarterCode</string>
     <string name="title_activity_map_view">Map</string>
+    <string name="select_date">Select date</string>
+    <string name="please_select_date">Please select date</string>
+    <string name="search">Search</string>
+    <string name="welcome">Welcome to Mobile Platform Development</string>
+    <string name="contains_british">Contains British Geological Survey materials ©NERC 2019</string>
 </resources>

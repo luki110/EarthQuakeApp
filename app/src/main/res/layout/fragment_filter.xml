@@ -12,7 +12,7 @@
         android:layout_height="60dp"
         android:gravity="center"
         android:textSize="20sp"
-        android:text="Please select date"
+        android:text="@string/please_select_date"
         android:textAlignment="center" />
 
 
@@ -20,14 +20,14 @@
         android:id="@+id/btnDatePicker"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Select date" />
+        android:text="@string/select_date" />
 
 
     <Button
         android:id="@+id/btnFilter"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Search" />
+        android:text="@string/search" />
 
     <TextView
         android:id="@+id/tvNoOfRecords"
@@ -47,11 +47,13 @@
         android:textAlignment="center"
         android:visibility="invisible"/>
 
-    <ListView
+    <GridView
         android:id="@+id/filteredListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"/>
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:numColumns="1"
+        />
 
 
 </LinearLayout>

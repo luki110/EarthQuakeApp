@@ -11,7 +11,7 @@
         android:layout_height="60dp"
         android:gravity="center"
         android:textSize="20sp"
-        android:text="Please select date"
+        android:text="@string/please_select_date"
         android:textAlignment="center" />
 
 
@@ -24,9 +24,9 @@
             android:id="@+id/btnDatePicker"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:text="Select date"
+            android:text="@string/select_date"
             android:gravity="center"
-            android:layout_weight="45"
+            android:layout_weight="50"
             android:layout_marginEnd="2dp"
             android:layout_marginStart="2dp"/>
 
@@ -36,15 +36,11 @@
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Search"
-            android:layout_weight="45"
+            android:text="@string/search"
+            android:layout_weight="48"
             android:layout_marginStart="2dp"/>
 
     </LinearLayout>
-
-
-
-
 
 
     <TextView
@@ -65,11 +61,14 @@
         android:textAlignment="center"
         android:visibility="invisible"/>
 
-    <ListView
+
+    <GridView
         android:id="@+id/filteredListView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:visibility="invisible"/>
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:numColumns="2"
+        />
 
 
 </LinearLayout>

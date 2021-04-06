@@ -12,12 +12,14 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.UiSettings;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
@@ -31,43 +33,41 @@ public class MapsFragment extends Fragment implements Observer<ArrayList<EarthQI
     private Bundle bundle;
     private EarthQItem earthQItem;
     private GoogleMap mMap;
-    private OnMapReadyCallback callback = new OnMapReadyCallback() {
 
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
+
+    private OnMapReadyCallback callback = new OnMapReadyCallback()
+    {
+
 
         @Override
-        public void onMapReady(GoogleMap googleMap) {
+        public void onMapReady(GoogleMap googleMap)
+        {
             mMap = googleMap;
             LatLng def;
             Marker marker1 = null;
-
+            UiSettings settings = mMap.getUiSettings();
+            settings.setZoomControlsEnabled(true);
+            settings.setCompassEnabled(true);
             MapInfoWindowAdapter adapter = new MapInfoWindowAdapter(getActivity());
             mMap.setInfoWindowAdapter(adapter);
 
-
-
-            for(int i = 0; i < list.size(); ++i) {
-
-
+            for(int i = 0; i < list.size(); ++i)
+            {
                 LatLng location = new LatLng(list.get(i).getLatitude(), list.get(i).getLongitude());
 
                 float colour;
-                if(list.get(i).getMagnitude() > 3){
+                if(list.get(i).getMagnitude() > 3)
+                {
                     colour = BitmapDescriptorFactory.HUE_VIOLET;
                 }
-                else if(list.get(i).getMagnitude() > 2) {
+                else if(list.get(i).getMagnitude() > 2)
+                {
                     colour = BitmapDescriptorFactory.HUE_RED;
-                } else if(list.get(i).getMagnitude() > 1) {
+                } else if(list.get(i).getMagnitude() > 1)
+                {
                     colour = BitmapDescriptorFactory.HUE_ORANGE;
-                } else {
+                } else
+                {
                     colour = BitmapDescriptorFactory.HUE_YELLOW;
                 }
 
@@ -79,48 +79,49 @@ public class MapsFragment extends Fragment implements Observer<ArrayList<EarthQI
 
                 marker.setTag(list.get(i));
 
-
-
-                if(list.get(i) == earthQItem) {
+                if(list.get(i) == earthQItem)
+                {
                     marker1 = marker;
                 }
             }
-            if(earthQItem != null){
+            //end of for loop
+            if(earthQItem != null)
+            {
                 def = new LatLng(earthQItem.getLatitude() , earthQItem.getLongitude());
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(def,10));
                 marker1.showInfoWindow();
             }
-            else{
+            else
+             {
                 def =  new LatLng(55, 0);
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(def,5));
-            }
-            //mMap.moveCamera(CameraUpdateFactory.newLatLng(def));
-            //if(show != null) {
-               // show.showInfoWindow();
-                //mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(def, 10));
-            }
-        //}
+             }
+        } // end of map ready
     };
+
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
                              @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState)
+    {
 
-            Bundle bundle = getArguments();
+        Bundle bundle = getArguments();
 
-        if(bundle != null){
+        if(bundle != null)
+        {
             earthQItem = (EarthQItem) bundle.getSerializable("Item");
         }
 
-
-
         return inflater.inflate(R.layout.fragment_maps, container, false);
     }
+
+
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated(@Nullable Bundle savedInstanceState)
+    {
         super.onActivityCreated(savedInstanceState);
         viewModel = new ViewModelProvider(getActivity()).get(SharedViewModel.class);
         viewModel.getList().observe(getViewLifecycleOwner(), new Observer<ArrayList<EarthQItem>>() {
@@ -133,7 +134,8 @@ public class MapsFragment extends Fragment implements Observer<ArrayList<EarthQI
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState)
+    {
         super.onViewCreated(view, savedInstanceState);
         SupportMapFragment mapFragment =
                 (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map);
