@@ -1,5 +1,5 @@
 package org.me.gcu.equakestartercode;
-
+//Student Id S1911301 Lukasz Bonkowski
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;

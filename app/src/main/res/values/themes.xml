@@ -1,3 +1,4 @@
+<!--    Student Id S1911301 Lukasz Bonkowski-->
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Theme.EQuakeStarterCode" parent="Theme.MaterialComponents.DayNight.NoActionBar">

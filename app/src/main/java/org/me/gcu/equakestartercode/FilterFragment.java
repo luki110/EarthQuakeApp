@@ -1,5 +1,5 @@
 package org.me.gcu.equakestartercode;
-
+//Student Id S1911301 Lukasz Bonkowski
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +38,6 @@ import java.util.LinkedHashMap;
 public class FilterFragment extends Fragment implements View.OnClickListener{
 
     private static final String TAG = "HashMapAdapter";
-//    private EditText datePicker1, datePicker2;
     private Button btnFilter, datePicker;
     private SharedViewModel viewModel;
     private ArrayList<EarthQItem> list;
@@ -46,7 +45,6 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
     private Date startDate, endDate;
     private TextView selectedDate, zeroResults, numberOfResults;
     private ArrayList<EarthQItem> filteredList;
-//    private ListView listView;
     private GridView listView;
 
     @Nullable
@@ -55,7 +53,6 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
         View v = inflater.inflate(R.layout.fragment_filter, container, false);
 
         datePicker = v.findViewById(R.id.btnDatePicker);
-//        datePicker2 = v.findViewById(R.id.datePicker2);
         btnFilter = v.findViewById(R.id.btnFilter);
         zeroResults = v.findViewById(R.id.tvNoResults);
         numberOfResults =  v.findViewById(R.id.tvNoOfRecords);
@@ -63,7 +60,6 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
         selectedDate = v.findViewById(R.id.tvSelectedDate);
         btnFilter.setOnClickListener(this);
         datePicker.setOnClickListener(this);
-
 
         showRangeCalendar();
         setRetainInstance(true);
@@ -110,7 +106,6 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
                         endDate = new Date(pickerRange.getSelection().second);
 
                         selectedDate.setText("Selected Date is : " + selectionDate);
-
                     }
                 });
     }
@@ -125,8 +120,7 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
             if(sDate.equals(eDate))
             {
                 Log.d(TAG, "filterList: " + i.getDate() + " "+ sDate.toString());
-//                Calendar calendar = Calendar.getInstance();
-//                calendar.
+
                 if(i.getDate().equals(sDate)){
                     filteredList.add(i);
                 }
@@ -280,7 +274,5 @@ public class FilterFragment extends Fragment implements View.OnClickListener{
         }
         return minLon;
     }
-
-
 
 }

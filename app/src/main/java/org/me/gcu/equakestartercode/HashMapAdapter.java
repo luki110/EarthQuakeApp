@@ -1,5 +1,5 @@
 package org.me.gcu.equakestartercode;
-
+//Student Id S1911301 Lukasz Bonkowski
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat;
 import java.util.LinkedHashMap;
 
 public class HashMapAdapter extends BaseAdapter {
+
     private static final String TAG = "HashMapAdapter";
     private LinkedHashMap<String, EarthQItem> mData = new LinkedHashMap<String, EarthQItem>();
     private String[] mKeys;

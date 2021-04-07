@@ -1,5 +1,5 @@
 package org.me.gcu.equakestartercode;
-
+//Student Id S1911301 Lukasz Bonkowski
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;

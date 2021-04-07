@@ -1,5 +1,5 @@
 package org.me.gcu.equakestartercode;
-
+//Student Id S1911301 Lukasz Bonkowski
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -119,7 +119,5 @@ public class EarthQItem implements Serializable {
     private double latitude;
     private double  longitude;
     private String  location;
-
-
 
 }

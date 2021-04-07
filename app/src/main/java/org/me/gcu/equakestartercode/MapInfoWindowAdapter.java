@@ -1,5 +1,5 @@
 package org.me.gcu.equakestartercode;
-
+//Student Id S1911301 Lukasz Bonkowski
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -12,6 +12,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.Marker;
 
 public class MapInfoWindowAdapter  implements GoogleMap.InfoWindowAdapter{
+
     private Context mContext;
 
     public MapInfoWindowAdapter(Context mContext) {

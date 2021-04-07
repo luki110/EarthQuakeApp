@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--    Student Id S1911301 Lukasz Bonkowski-->
 <resources>
     <string name="select_date">Select date</string>
     <string name="please_select_date">Please select date</string>
     <string name="search">Search</string>
-    <string name="welcome_to_mobile_platform_development">Welcome to Mobile Platform Development</string>
-    <string name="contains_british_geological_survey_materials_nerc_2019">Contains British Geological Survey materials ©NERC 2019</string>
+    <string name="welcome">Welcome to Mobile Platform Development</string>
+    <string name="contains_british">Contains British Geological Survey materials ©NERC 2019</string>
 </resources>

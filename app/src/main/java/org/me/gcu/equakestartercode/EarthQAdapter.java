@@ -1,5 +1,5 @@
 package org.me.gcu.equakestartercode;
-
+//Student Id S1911301 Lukasz Bonkowski
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 
 public class EarthQAdapter  extends ArrayAdapter<EarthQItem> {
+
     private static final String TAG = "EarthQAdapter";
     private Context mContext;
     private int mResource;

@@ -1,5 +1,5 @@
 package org.me.gcu.equakestartercode;
-
+//Student Id S1911301 Lukasz Bonkowski
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -38,6 +38,7 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity
 {
+
     private static final String TAG = "MainActivity";
     private SharedViewModel viewModel;
     private HomeFragment homeFragment;
