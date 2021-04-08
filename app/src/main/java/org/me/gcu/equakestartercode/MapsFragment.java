@@ -38,7 +38,6 @@ public class MapsFragment extends Fragment implements Observer<ArrayList<EarthQI
     private OnMapReadyCallback callback = new OnMapReadyCallback()
     {
 
-
         @Override
         public void onMapReady(GoogleMap googleMap)
         {

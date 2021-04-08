@@ -110,10 +110,17 @@ public class HomeFragment extends Fragment  {
                             else if("description".equalsIgnoreCase(eltName))
                             {
                                 currentItem.setDescription(xpp.nextText());
-                                List<String> ListStrings = new ArrayList<String>(Arrays.asList(currentItem.getDescription().split(";")));
-                                Log.e("MyTag", "List " + ListStrings);
-                                String location = ListStrings.get(1).substring(1);
+                                List<String> listStrings = new ArrayList<String>(Arrays.asList(currentItem.getDescription().split(";")));
+                                Log.e("MyTag", "List " + listStrings);
+
+                                String location = listStrings.get(1).substring(1);
+
+                                double magnitude = Double.parseDouble(listStrings.get(4).substring(listStrings.get(4).length() - 3));
+
+                                double depth = Double.parseDouble(listStrings.get(3).substring(8, listStrings.get(3).length() - 4));
                                 currentItem.setLocation(location);
+                                currentItem.setMagnitude(magnitude);
+                                currentItem.setDepth(depth);
 
                             }
                             else if("pubdate".equalsIgnoreCase(eltName))

@@ -1,5 +1,7 @@
 package org.me.gcu.equakestartercode;
 //Student Id S1911301 Lukasz Bonkowski
+import android.annotation.SuppressLint;
+
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -30,7 +32,7 @@ public class EarthQItem implements Serializable {
     public Date getDate() {return date;}
 
     public String getStringDate(){
-        DateFormat dateFormat = new SimpleDateFormat("E, MMM dd yyyy");
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("E, MMM dd yyyy");
         String strDate = dateFormat.format(date);
         return strDate;
     }
@@ -62,36 +64,28 @@ public class EarthQItem implements Serializable {
         this.location = location;
     }
 
-    public double getMagnitude() {
-        List<String> split = new ArrayList<String>(Arrays.asList(description.split(";")));
-        try {
-            return Double.parseDouble(split.get(4).substring(split.get(4).length() - 3));
-        } catch (Exception e) {
-            return 0;
-        }
-    }
+    public double getMagnitude() { return magnitude; }
+    public void setMagnitude(double magnitude) { this.magnitude = magnitude; }
+    public double getDepth() { return depth; }
 
-    public double getDepth() {
-        List<String> split = new ArrayList<String>(Arrays.asList(description.split(";")));
-        try {
-            return Double.parseDouble(split.get(3).substring(8, split.get(3).length() - 4));
-        } catch (Exception e) {
-            return 0;
-        }
-    }
+    public void setDepth(double depth) { this.depth = depth; }
+
+
     @Override
     public String toString() {
         return location;
     }
 
     public EarthQItem(String title, String description, Date date, double latitude,
-                      double longitude, String location) {
+                      double longitude, String location, double magnitude, double depth) {
         this.title = title;
         this.description = description;
         this.date = date;
         this.latitude = latitude;
         this.longitude = longitude;
         this.location = location;
+        this.magnitude = magnitude;
+        this.depth = depth;
 
     }
 
@@ -109,6 +103,8 @@ public class EarthQItem implements Serializable {
         latitude = 0.00;
         longitude = 0.00;
         location = "";
+        magnitude = 0.00;
+        depth = 0.00;
 
 
     }
@@ -117,7 +113,9 @@ public class EarthQItem implements Serializable {
     private String description;
     private Date date;
     private double latitude;
-    private double  longitude;
-    private String  location;
+    private double longitude;
+    private String location;
+    private double magnitude;
+    private double depth;
 
 }
